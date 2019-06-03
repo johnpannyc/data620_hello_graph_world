@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://localhost:8888/notebooks/data620hellographworld.ipynb -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>data620hellographworld</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./data620hellographworld_files/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./data620hellographworld_files/jquery.typeahead.min.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+
+
+<script type="text/javascript" src="./data620hellographworld_files/MathJax.js.download" charset="utf-8"></script>
+
+<script type="text/javascript">
+// MathJax disabled, set as null to distingish from *missing* MathJax,
+// where it will be undefined, and should prompt a dialog later.
+window.mathjax_url = "/static/components/MathJax/MathJax.js";
+</script>
+
+<link rel="stylesheet" href="./data620hellographworld_files/bootstrap-tour.min.css" type="text/css">
+<link rel="stylesheet" href="./data620hellographworld_files/codemirror.css">
+
+
+    <link rel="stylesheet" href="./data620hellographworld_files/style.min.css" type="text/css">
+    
+
+<link rel="stylesheet" href="./data620hellographworld_files/override.css" type="text/css">
+<link rel="stylesheet" href="http://localhost:8888/notebooks/data620hellographworld.ipynb" id="kernel-css" type="text/css">
+
+
+    <link rel="stylesheet" href="./data620hellographworld_files/custom.css" type="text/css">
+    <script src="./data620hellographworld_files/promise.min.js.download" type="text/javascript" charset="utf-8"></script>
+    <script src="./data620hellographworld_files/index.js.download" type="text/javascript"></script>
+    <script src="./data620hellographworld_files/index.js(1).download" type="text/javascript"></script>
+    <script src="./data620hellographworld_files/index.js(2).download" type="text/javascript"></script>
+    <script src="./data620hellographworld_files/require.js.download" type="text/javascript" charset="utf-8"></script>
+    <script>
+      require.config({
+          
+          urlArgs: "v=20190603133121",
+          
+          baseUrl: '/static/',
+          paths: {
+            'auth/js/main': 'auth/js/main.min',
+            custom : '/custom',
+            nbextensions : '/nbextensions',
+            kernelspecs : '/kernelspecs',
+            underscore : 'components/underscore/underscore-min',
+            backbone : 'components/backbone/backbone-min',
+            jed: 'components/jed/jed',
+            jquery: 'components/jquery/jquery.min',
+            json: 'components/requirejs-plugins/src/json',
+            text: 'components/requirejs-text/text',
+            bootstrap: 'components/bootstrap/js/bootstrap.min',
+            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
+            'jquery-ui': 'components/jquery-ui/ui/minified/jquery-ui.min',
+            moment: 'components/moment/min/moment-with-locales',
+            codemirror: 'components/codemirror',
+            termjs: 'components/xterm.js/xterm',
+            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead.min',
+          },
+          map: { // for backward compatibility
+              "*": {
+                  "jqueryui": "jquery-ui",
+              }
+          },
+          shim: {
+            typeahead: {
+              deps: ["jquery"],
+              exports: "typeahead"
+            },
+            underscore: {
+              exports: '_'
+            },
+            backbone: {
+              deps: ["underscore", "jquery"],
+              exports: "Backbone"
+            },
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+            bootstraptour: {
+              deps: ["bootstrap"],
+              exports: "Tour"
+            },
+            "jquery-ui": {
+              deps: ["jquery"],
+              exports: "$"
+            }
+          },
+          waitSeconds: 30,
+      });
+
+      require.config({
+          map: {
+              '*':{
+                'contents': 'services/contents',
+              }
+          }
+      });
+
+      // error-catching custom.js shim.
+      define("custom", function (require, exports, module) {
+          try {
+              var custom = require('custom/custom');
+              console.debug('loaded custom.js');
+              return custom;
+          } catch (e) {
+              console.error("error loading custom.js", e);
+              return {};
+          }
+      })
+
+    document.nbjs_translations = {"domain": "nbjs", "locale_data": {"nbjs": {"": {"domain": "nbjs"}}}};
+    document.documentElement.lang = navigator.language.toLowerCase();
+    </script>
+
+    
+    
+
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="services/contents" src="./data620hellographworld_files/contents.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="custom/custom" src="./data620hellographworld_files/custom.js.download"></script><style type="text/css">div.MathJax_MathML {text-align: center; margin: .75em 0px; display: block!important}
+.MathJax_MathML {font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+span.MathJax_MathML {display: inline!important}
+.MathJax_mmlExBox {display: block!important; overflow: hidden; height: 1px; width: 60ex; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0}
+[class="MJX-tex-oldstyle"] {font-family: MathJax_Caligraphic, MathJax_Caligraphic-WEB}
+[class="MJX-tex-oldstyle-bold"] {font-family: MathJax_Caligraphic, MathJax_Caligraphic-WEB; font-weight: bold}
+[class="MJX-tex-caligraphic"] {font-family: MathJax_Caligraphic, MathJax_Caligraphic-WEB}
+[class="MJX-tex-caligraphic-bold"] {font-family: MathJax_Caligraphic, MathJax_Caligraphic-WEB; font-weight: bold}
+@font-face /*1*/ {font-family: MathJax_Caligraphic-WEB; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf')}
+@font-face /*2*/ {font-family: MathJax_Caligraphic-WEB; font-weight: bold; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf')}
+[mathvariant="double-struck"] {font-family: MathJax_AMS, MathJax_AMS-WEB}
+[mathvariant="script"] {font-family: MathJax_Script, MathJax_Script-WEB}
+[mathvariant="fraktur"] {font-family: MathJax_Fraktur, MathJax_Fraktur-WEB}
+[mathvariant="bold-script"] {font-family: MathJax_Script, MathJax_Caligraphic-WEB; font-weight: bold}
+[mathvariant="bold-fraktur"] {font-family: MathJax_Fraktur, MathJax_Fraktur-WEB; font-weight: bold}
+[mathvariant="monospace"] {font-family: monospace}
+[mathvariant="sans-serif"] {font-family: sans-serif}
+[mathvariant="bold-sans-serif"] {font-family: sans-serif; font-weight: bold}
+[mathvariant="sans-serif-italic"] {font-family: sans-serif; font-style: italic}
+[mathvariant="sans-serif-bold-italic"] {font-family: sans-serif; font-style: italic; font-weight: bold}
+@font-face /*3*/ {font-family: MathJax_AMS-WEB; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf')}
+@font-face /*4*/ {font-family: MathJax_Script-WEB; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf')}
+@font-face /*5*/ {font-family: MathJax_Fraktur-WEB; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf')}
+@font-face /*6*/ {font-family: MathJax_Fraktur-WEB; font-weight: bold; src: url('http://localhost:8888/static/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf')}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="nbextensions/plotlywidget/extension" src="./data620hellographworld_files/extension.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="nbextensions/jupyter-js-widgets/extension" src="./data620hellographworld_files/extension.js(1).download"></script><style type="text/css">.MathJax_Display {text-align: center; margin: 0; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">/*
+ * Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+/* Override the correction for the prompt area in https://github.com/jupyter/notebook/blob/dd41d9fd5c4f698bd7468612d877828a7eeb0e7a/IPython/html/static/notebook/less/outputarea.less#L110 */
+
+.jupyter-widgets-output-area div.output_subarea {
+    max-width: 100%;
+}
+
+/* Work-around for the bug fixed in https://github.com/jupyter/notebook/pull/2961 */
+
+.jupyter-widgets-output-area > .out_prompt_overlay {
+    display: none;
+}
+</style><style type="text/css">/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-Widget {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.p-Widget.p-mod-hidden {
+  display: none !important;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-CommandPalette {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.p-CommandPalette-search {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+.p-CommandPalette-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  overflow: auto;
+  list-style-type: none;
+}
+.p-CommandPalette-header {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.p-CommandPalette-itemShortcut {
+  float: right;
+}
+.p-CommandPalette-itemLabel {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-DockPanel {
+  z-index: 0;
+}
+.p-DockPanel-widget {
+  z-index: 0;
+}
+.p-DockPanel-tabBar {
+  z-index: 1;
+}
+.p-DockPanel-handle {
+  z-index: 2;
+}
+.p-DockPanel-handle.p-mod-hidden {
+  display: none !important;
+}
+.p-DockPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+.p-DockPanel-handle[data-orientation='horizontal'] {
+  cursor: ew-resize;
+}
+.p-DockPanel-handle[data-orientation='vertical'] {
+  cursor: ns-resize;
+}
+.p-DockPanel-handle[data-orientation='horizontal']:after {
+  left: 50%;
+  min-width: 8px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.p-DockPanel-handle[data-orientation='vertical']:after {
+  top: 50%;
+  min-height: 8px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.p-DockPanel-overlay {
+  z-index: 3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  pointer-events: none;
+}
+.p-DockPanel-overlay.p-mod-hidden {
+  display: none !important;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-Menu {
+  z-index: 10000;
+  position: absolute;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.p-Menu-content {
+  margin: 0;
+  padding: 0;
+  display: table;
+  list-style-type: none;
+}
+.p-Menu-item {
+  display: table-row;
+}
+.p-Menu-item.p-mod-hidden,
+.p-Menu-item.p-mod-collapsed {
+  display: none !important;
+}
+.p-Menu-itemIcon,
+.p-Menu-itemSubmenuIcon {
+  display: table-cell;
+  text-align: center;
+}
+.p-Menu-itemLabel {
+  display: table-cell;
+  text-align: left;
+}
+.p-Menu-itemShortcut {
+  display: table-cell;
+  text-align: right;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-MenuBar {
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.p-MenuBar-content {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  list-style-type: none;
+}
+.p-MenuBar-item {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.p-MenuBar-itemIcon,
+.p-MenuBar-itemLabel {
+  display: inline-block;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-ScrollBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.p-ScrollBar[data-orientation='horizontal'] {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.p-ScrollBar[data-orientation='vertical'] {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.p-ScrollBar-button {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+.p-ScrollBar-track {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.p-ScrollBar-thumb {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-SplitPanel-child {
+  z-index: 0;
+}
+.p-SplitPanel-handle {
+  z-index: 1;
+}
+.p-SplitPanel-handle.p-mod-hidden {
+  display: none !important;
+}
+.p-SplitPanel-handle:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle {
+  cursor: ew-resize;
+}
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle {
+  cursor: ns-resize;
+}
+.p-SplitPanel[data-orientation='horizontal'] > .p-SplitPanel-handle:after {
+  left: 50%;
+  min-width: 8px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.p-SplitPanel[data-orientation='vertical'] > .p-SplitPanel-handle:after {
+  top: 50%;
+  min-height: 8px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-TabBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.p-TabBar[data-orientation='horizontal'] {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.p-TabBar[data-orientation='vertical'] {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.p-TabBar-content {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  list-style-type: none;
+}
+.p-TabBar[data-orientation='horizontal'] > .p-TabBar-content {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.p-TabBar[data-orientation='vertical'] > .p-TabBar-content {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.p-TabBar-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+.p-TabBar-tabIcon,
+.p-TabBar-tabCloseIcon {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+.p-TabBar-tabLabel {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.p-TabBar-tab.p-mod-hidden {
+  display: none !important;
+}
+.p-TabBar.p-mod-dragging .p-TabBar-tab {
+  position: relative;
+}
+.p-TabBar.p-mod-dragging[data-orientation='horizontal'] .p-TabBar-tab {
+  left: 0;
+  -webkit-transition: left 150ms ease;
+  transition: left 150ms ease;
+}
+.p-TabBar.p-mod-dragging[data-orientation='vertical'] .p-TabBar-tab {
+  top: 0;
+  -webkit-transition: top 150ms ease;
+  transition: top 150ms ease;
+}
+.p-TabBar.p-mod-dragging .p-TabBar-tab.p-mod-dragging {
+  -webkit-transition: none;
+  transition: none;
+}
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2017, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+.p-TabPanel-tabBar {
+  z-index: 1;
+}
+.p-TabPanel-stackedPanel {
+  z-index: 0;
+}
+</style><style type="text/css">/* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+ .jupyter-widgets-disconnected::before {
+    content: "\F127"; /* chain-broken */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #d9534f;
+    padding: 3px;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+}
+</style><style type="text/css">/* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+ /* We import all of these together in a single css file because the Webpack
+loader sees only one file at a time. This allows postcss to see the variable
+definitions when they are used. */
+
+ /*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+ /*
+This file is copied from the JupyterLab project to define default styling for
+when the widget styling is compiled down to eliminate CSS variables. We make one
+change - we comment out the font import below.
+*/
+
+ /**
+ * The material design colors are adapted from google-material-color v1.2.6
+ * https://github.com/danlevan/google-material-color
+ * https://github.com/danlevan/google-material-color/blob/f67ca5f4028b2f1b34862f64b0ca67323f91b088/dist/palette.var.css
+ *
+ * The license for the material design color CSS variables is as follows (see
+ * https://github.com/danlevan/google-material-color/blob/f67ca5f4028b2f1b34862f64b0ca67323f91b088/LICENSE)
+ *
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2014 Dan Le Van
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+ /*
+The following CSS variables define the main, public API for styling JupyterLab.
+These variables should be used by all plugins wherever possible. In other
+words, plugins should not define custom colors, sizes, etc unless absolutely
+necessary. This enables users to change the visual theme of JupyterLab
+by changing these variables.
+
+Many variables appear in an ordered sequence (0,1,2,3). These sequences
+are designed to work well together, so for example, `--jp-border-color1` should
+be used with `--jp-layout-color1`. The numbers have the following meanings:
+
+* 0: super-primary, reserved for special emphasis
+* 1: primary, most important under normal situations
+* 2: secondary, next most important under normal situations
+* 3: tertiary, next most important under normal situations
+
+Throughout JupyterLab, we are mostly following principles from Google's
+Material Design when selecting colors. We are not, however, following
+all of MD as it is not optimized for dense, information rich UIs.
+*/
+
+ /*
+ * Optional monospace font for input/output prompt.
+ */
+
+ /* Commented out in ipywidgets since we don't need it. */
+
+ /* @import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); */
+
+ /*
+ * Added for compabitility with output area
+ */
+
+ :root {
+
+  /* Borders
+
+  The following variables, specify the visual styling of borders in JupyterLab.
+   */
+
+  /* UI Fonts
+
+  The UI font CSS variables are used for the typography all of the JupyterLab
+  user interface elements that are not directly user generated content.
+  */ /* Base font size */ /* Ensures px perfect FontAwesome icons */
+
+  /* Use these font colors against the corresponding main layout colors.
+     In a light theme, these go from dark to light.
+  */
+
+  /* Use these against the brand/accent/warn/error colors.
+     These will typically go from light to darker, in both a dark and light theme
+   */
+
+  /* Content Fonts
+
+  Content font variables are used for typography of user generated content.
+  */ /* Base font size */
+
+
+  /* Layout
+
+  The following are the main layout colors use in JupyterLab. In a light
+  theme these would go from light to dark.
+  */
+
+  /* Brand/accent */
+
+  /* State colors (warn, error, success, info) */
+
+  /* Cell specific styles */
+  /* A custom blend of MD grey and blue 600
+   * See https://meyerweb.com/eric/tools/color-blend/#546E7A:1E88E5:5:hex */
+  /* A custom blend of MD grey and orange 600
+   * https://meyerweb.com/eric/tools/color-blend/#546E7A:F4511E:5:hex */
+
+  /* Notebook specific styles */
+
+  /* Console specific styles */
+
+  /* Toolbar specific styles */
+}
+
+ /* Copyright (c) Jupyter Development Team.
+ * Distributed under the terms of the Modified BSD License.
+ */
+
+ /*
+ * We assume that the CSS variables in
+ * https://github.com/jupyterlab/jupyterlab/blob/master/src/default-theme/variables.css
+ * have been defined.
+ */
+
+ /* This file has code derived from PhosphorJS CSS files, as noted below. The license for this PhosphorJS code is:
+
+Copyright (c) 2014-2017, PhosphorJS Contributors
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
+
+ /*
+ * The following section is derived from https://github.com/phosphorjs/phosphor/blob/23b9d075ebc5b73ab148b6ebfc20af97f85714c4/packages/widgets/style/tabbar.css 
+ * We've scoped the rules so that they are consistent with exactly our code.
+ */
+
+ .jupyter-widgets.widget-tab > .p-TabBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar[data-orientation='horizontal'] {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar[data-orientation='vertical'] {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar > .p-TabBar-content {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  list-style-type: none;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar[data-orientation='horizontal'] > .p-TabBar-content {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar[data-orientation='vertical'] > .p-TabBar-content {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabIcon,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabCloseIcon {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabLabel {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-hidden {
+  display: none !important;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging .p-TabBar-tab {
+  position: relative;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging[data-orientation='horizontal'] .p-TabBar-tab {
+  left: 0;
+  -webkit-transition: left 150ms ease;
+  transition: left 150ms ease;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging[data-orientation='vertical'] .p-TabBar-tab {
+  top: 0;
+  -webkit-transition: top 150ms ease;
+  transition: top 150ms ease;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar.p-mod-dragging .p-TabBar-tab.p-mod-dragging {
+  -webkit-transition: none;
+  transition: none;
+}
+
+ /* End tabbar.css */
+
+ :root { /* margin between inline elements */
+
+    /* From Material Design Lite */
+}
+
+ .jupyter-widgets {
+    margin: 2px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: black;
+    overflow: visible;
+}
+
+ .jupyter-widgets.jupyter-widgets-disconnected::before {
+    line-height: 28px;
+    height: 28px;
+}
+
+ .jp-Output-result > .jupyter-widgets {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+ /* vbox and hbox */
+
+ .widget-inline-hbox {
+    /* Horizontal widgets */
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+}
+
+ .widget-inline-vbox {
+    /* Vertical Widgets */
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+ .widget-box {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+    overflow: auto;
+}
+
+ .widget-hbox {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+
+ .widget-vbox {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+ /* General Button Styling */
+
+ .jupyter-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+
+    height: 28px;
+    border: 0px solid;
+    line-height: 28px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+
+    color: rgba(0, 0, 0, .8);
+    background-color: #EEEEEE;
+    border-color: #E0E0E0;
+    border: none;
+}
+
+ .jupyter-button i.fa {
+    margin-right: 4px;
+    pointer-events: none;
+}
+
+ .jupyter-button:empty:before {
+    content: "\200B"; /* zero-width space */
+}
+
+ .jupyter-widgets.jupyter-button:disabled {
+    opacity: 0.6;
+}
+
+ .jupyter-button i.fa.center {
+    margin-right: 0;
+}
+
+ .jupyter-button:hover:enabled, .jupyter-button:focus:enabled {
+    /* MD Lite 2dp shadow */
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                0 3px 1px -2px rgba(0, 0, 0, .2),
+                0 1px 5px 0 rgba(0, 0, 0, .12);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                0 3px 1px -2px rgba(0, 0, 0, .2),
+                0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+ .jupyter-button:active, .jupyter-button.mod-active {
+    /* MD Lite 4dp shadow */
+    -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
+                0 1px 10px 0 rgba(0, 0, 0, .12),
+                0 2px 4px -1px rgba(0, 0, 0, .2);
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
+                0 1px 10px 0 rgba(0, 0, 0, .12),
+                0 2px 4px -1px rgba(0, 0, 0, .2);
+    color: rgba(0, 0, 0, .8);
+    background-color: #BDBDBD;
+}
+
+ .jupyter-button:focus:enabled {
+    outline: 1px solid #64B5F6;
+}
+
+ /* Button "Primary" Styling */
+
+ .jupyter-button.mod-primary {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #2196F3;
+}
+
+ .jupyter-button.mod-primary.mod-active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #1976D2;
+}
+
+ .jupyter-button.mod-primary:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #1976D2;
+}
+
+ /* Button "Success" Styling */
+
+ .jupyter-button.mod-success {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #4CAF50;
+}
+
+ .jupyter-button.mod-success.mod-active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #388E3C;
+ }
+
+ .jupyter-button.mod-success:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #388E3C;
+ }
+
+ /* Button "Info" Styling */
+
+ .jupyter-button.mod-info {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #00BCD4;
+}
+
+ .jupyter-button.mod-info.mod-active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #0097A7;
+}
+
+ .jupyter-button.mod-info:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #0097A7;
+}
+
+ /* Button "Warning" Styling */
+
+ .jupyter-button.mod-warning {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #FF9800;
+}
+
+ .jupyter-button.mod-warning.mod-active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #F57C00;
+}
+
+ .jupyter-button.mod-warning:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #F57C00;
+}
+
+ /* Button "Danger" Styling */
+
+ .jupyter-button.mod-danger {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #F44336;
+}
+
+ .jupyter-button.mod-danger.mod-active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #D32F2F;
+}
+
+ .jupyter-button.mod-danger:active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #D32F2F;
+}
+
+ /* Widget Button*/
+
+ .widget-button, .widget-toggle-button {
+    width: 148px;
+}
+
+ /* Widget Label Styling */
+
+ /* Override Bootstrap label css */
+
+ .jupyter-widgets label {
+    margin-bottom: 0;
+    margin-bottom: initial;
+}
+
+ .widget-label-basic {
+    /* Basic Label */
+    color: black;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 28px;
+}
+
+ .widget-label {
+    /* Label */
+    color: black;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 28px;
+}
+
+ .widget-inline-hbox .widget-label {
+    /* Horizontal Widget Label */
+    color: black;
+    text-align: right;
+    margin-right: 8px;
+    width: 80px;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+}
+
+ .widget-inline-vbox .widget-label {
+    /* Vertical Widget Label */
+    color: black;
+    text-align: center;
+    line-height: 28px;
+}
+
+ /* Widget Readout Styling */
+
+ .widget-readout {
+    color: black;
+    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+ .widget-readout.overflow {
+    /* Overflowing Readout */
+
+    /* From Material Design Lite
+        shadow-key-umbra-opacity: 0.2;
+        shadow-key-penumbra-opacity: 0.14;
+        shadow-ambient-shadow-opacity: 0.12;
+     */
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2),
+                        0 3px 1px -2px rgba(0, 0, 0, .14),
+                        0 1px 5px 0 rgba(0, 0, 0, .12);
+
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2),
+                0 3px 1px -2px rgba(0, 0, 0, .14),
+                0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+ .widget-inline-hbox .widget-readout {
+    /* Horizontal Readout */
+    text-align: center;
+    max-width: 148px;
+    min-width: 72px;
+    margin-left: 4px;
+}
+
+ .widget-inline-vbox .widget-readout {
+    /* Vertical Readout */
+    margin-top: 4px;
+    /* as wide as the widget */
+    width: inherit;
+}
+
+ /* Widget Checkbox Styling */
+
+ .widget-checkbox {
+    width: 300px;
+    height: 28px;
+    line-height: 28px;
+}
+
+ .widget-checkbox input[type="checkbox"] {
+    margin: 0px 8px 0px 0px;
+    line-height: 28px;
+    font-size: large;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-item-align: center;
+        align-self: center;
+}
+
+ /* Widget Valid Styling */
+
+ .widget-valid {
+    height: 28px;
+    line-height: 28px;
+    width: 148px;
+    font-size: 13px;
+}
+
+ .widget-valid i:before {
+    line-height: 28px;
+    margin-right: 4px;
+    margin-left: 4px;
+
+    /* from the fa class in FontAwesome: https://github.com/FortAwesome/Font-Awesome/blob/49100c7c3a7b58d50baa71efef11af41a66b03d3/css/font-awesome.css#L14 */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ .widget-valid.mod-valid i:before {
+    content: "\F00C";
+    color: green;
+}
+
+ .widget-valid.mod-invalid i:before {
+    content: "\F00D";
+    color: red;
+}
+
+ .widget-valid.mod-valid .widget-valid-readout {
+    display: none;
+}
+
+ /* Widget Text and TextArea Stying */
+
+ .widget-textarea, .widget-text {
+    width: 300px;
+}
+
+ .widget-text input[type="text"], .widget-text input[type="number"]{
+    height: 28px;
+    line-height: 28px;
+}
+
+ .widget-text input[type="text"]:disabled, .widget-text input[type="number"]:disabled, .widget-textarea textarea:disabled {
+    opacity: 0.6;
+}
+
+ .widget-text input[type="text"], .widget-text input[type="number"], .widget-textarea textarea {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border: 1px solid #9E9E9E;
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+    font-size: 13px;
+    padding: 4px 8px;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    outline: none !important;
+}
+
+ .widget-textarea textarea {
+    height: inherit;
+    width: inherit;
+}
+
+ .widget-text input:focus, .widget-textarea textarea:focus {
+    border-color: #64B5F6;
+}
+
+ /* Widget Slider */
+
+ .widget-slider .ui-slider {
+    /* Slider Track */
+    border: 1px solid #BDBDBD;
+    background: #BDBDBD;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    border-radius: 0px;
+}
+
+ .widget-slider .ui-slider .ui-slider-handle {
+    /* Slider Handle */
+    outline: none !important; /* focused slider handles are colored - see below */
+    position: absolute;
+    background-color: white;
+    border: 1px solid #9E9E9E;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    z-index: 1;
+    background-image: none; /* Override jquery-ui */
+}
+
+ /* Override jquery-ui */
+
+ .widget-slider .ui-slider .ui-slider-handle:hover, .widget-slider .ui-slider .ui-slider-handle:focus {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+ .widget-slider .ui-slider .ui-slider-handle:active {
+    background-color: #2196F3;
+    border-color: #2196F3;
+    z-index: 2;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+}
+
+ .widget-slider  .ui-slider .ui-slider-range {
+    /* Interval between the two specified value of a double slider */
+    position: absolute;
+    background: #2196F3;
+    z-index: 0;
+}
+
+ /* Shapes of Slider Handles */
+
+ .widget-hslider .ui-slider .ui-slider-handle {
+    width: 16px;
+    height: 16px;
+    margin-top: -7px;
+    margin-left: -7px;
+    border-radius: 50%;
+    top: 0;
+}
+
+ .widget-vslider .ui-slider .ui-slider-handle {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -7px;
+    margin-left: -7px;
+    border-radius: 50%;
+    left: 0;
+}
+
+ .widget-hslider .ui-slider .ui-slider-range {
+    height: 8px;
+    margin-top: -3px;
+}
+
+ .widget-vslider .ui-slider .ui-slider-range {
+    width: 8px;
+    margin-left: -3px;
+}
+
+ /* Horizontal Slider */
+
+ .widget-hslider {
+    width: 300px;
+    height: 28px;
+    line-height: 28px;
+
+    /* Override the align-items baseline. This way, the description and readout
+    still seem to align their baseline properly, and we don't have to have
+    align-self: stretch in the .slider-container. */
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+ .widgets-slider .slider-container {
+    overflow: visible;
+}
+
+ .widget-hslider .slider-container {
+    height: 28px;
+    margin-left: 6px;
+    margin-right: 6px;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 148px;
+            flex: 1 1 148px;
+}
+
+ .widget-hslider .ui-slider {
+    /* Inner, invisible slide div */
+    height: 4px;
+    margin-top: 12px;
+    width: 100%;
+}
+
+ /* Vertical Slider */
+
+ .widget-vbox .widget-label {
+    height: 28px;
+    line-height: 28px;
+}
+
+ .widget-vslider {
+    /* Vertical Slider */
+    height: 200px;
+    width: 72px;
+}
+
+ .widget-vslider .slider-container {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 148px;
+            flex: 1 1 148px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+ .widget-vslider .ui-slider-vertical {
+    /* Inner, invisible slide div */
+    width: 4px;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ /* Widget Progress Styling */
+
+ .progress-bar {
+    -webkit-transition: none;
+    transition: none;
+}
+
+ .progress-bar {
+    height: 28px;
+}
+
+ .progress-bar {
+    background-color: #2196F3;
+}
+
+ .progress-bar-success {
+    background-color: #4CAF50;
+}
+
+ .progress-bar-info {
+    background-color: #00BCD4;
+}
+
+ .progress-bar-warning {
+    background-color: #FF9800;
+}
+
+ .progress-bar-danger {
+    background-color: #F44336;
+}
+
+ .progress {
+    background-color: #EEEEEE;
+    border: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+ /* Horisontal Progress */
+
+ .widget-hprogress {
+    /* Progress Bar */
+    height: 28px;
+    line-height: 28px;
+    width: 300px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+}
+
+ .widget-hprogress .progress {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    /* Override bootstrap style */
+    height: auto;
+    height: initial;
+}
+
+ /* Vertical Progress */
+
+ .widget-vprogress {
+    height: 200px;
+    width: 72px;
+}
+
+ .widget-vprogress .progress {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+ /* Select Widget Styling */
+
+ .widget-dropdown {
+    height: 28px;
+    width: 300px;
+    line-height: 28px;
+}
+
+ .widget-dropdown > select {
+    border: 1px solid #9E9E9E;
+    border-radius: 0;
+    height: inherit;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 148px;
+            flex: 1 1 148px;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    outline: none !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+    font-size: 13px;
+    vertical-align: top;
+    padding-left: 8px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: right center;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOCAxOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTggMTg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDpub25lO30KPC9zdHlsZT4KPHBhdGggZD0iTTUuMiw1LjlMOSw5LjdsMy44LTMuOGwxLjIsMS4ybC00LjksNWwtNC45LTVMNS4yLDUuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTAtMC42aDE4djE4SDBWLTAuNnoiLz4KPC9zdmc+Cg");
+}
+
+ .widget-dropdown > select:focus {
+    border-color: #64B5F6;
+}
+
+ .widget-dropdown > select:disabled {
+    opacity: 0.6;
+}
+
+ /* To disable the dotted border in Firefox around select controls.
+   See http://stackoverflow.com/a/18853002 */
+
+ .widget-dropdown > select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+ /* Select and SelectMultiple */
+
+ .widget-select {
+    width: 300px;
+    line-height: 28px;
+
+    /* Because Firefox defines the baseline of a select as the bottom of the
+    control, we align the entire control to the top and add padding to the
+    select to get an approximate first line baseline alignment. */
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+
+ .widget-select > select {
+    border: 1px solid #9E9E9E;
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+    font-size: 13px;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 148px;
+            flex: 1 1 148px;
+    outline: none !important;
+    overflow: auto;
+    height: inherit;
+
+    /* Because Firefox defines the baseline of a select as the bottom of the
+    control, we align the entire control to the top and add padding to the
+    select to get an approximate first line baseline alignment. */
+    padding-top: 5px;
+}
+
+ .widget-select > select:focus {
+    border-color: #64B5F6;
+}
+
+ .wiget-select > select > option {
+    padding-left: 4px;
+    line-height: 28px;
+    /* line-height doesn't work on some browsers for select options */
+    padding-top: calc(28px - var(--jp-widgets-font-size) / 2);
+    padding-bottom: calc(28px - var(--jp-widgets-font-size) / 2);
+}
+
+ /* Toggle Buttons Styling */
+
+ .widget-toggle-buttons {
+    line-height: 28px;
+}
+
+ .widget-toggle-buttons .widget-toggle-button {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+ .widget-toggle-buttons .jupyter-button:disabled {
+    opacity: 0.6;
+}
+
+ /* Radio Buttons Styling */
+
+ .widget-radio {
+    width: 300px;
+    line-height: 28px;
+}
+
+ .widget-radio-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-bottom: 8px;
+}
+
+ .widget-radio-box label {
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+}
+
+ .widget-radio-box input {
+    height: 20px;
+    line-height: 20px;
+    margin: 0 8px 0 1px;
+    float: left;
+}
+
+ /* Color Picker Styling */
+
+ .widget-colorpicker {
+    width: 300px;
+    height: 28px;
+    line-height: 28px;
+}
+
+ .widget-colorpicker > .widget-colorpicker-input {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    min-width: 72px;
+}
+
+ .widget-colorpicker input[type="color"] {
+    width: 28px;
+    height: 28px;
+    padding: 0 2px; /* make the color square actually square on Chrome on OS X */
+    background: white;
+    color: rgba(0, 0, 0, .8);
+    border: 1px solid #9E9E9E;
+    border-left: none;
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    outline: none !important;
+}
+
+ .widget-colorpicker.concise input[type="color"] {
+    border-left: 1px solid #9E9E9E;
+}
+
+ .widget-colorpicker input[type="color"]:focus, .widget-colorpicker input[type="text"]:focus {
+    border-color: #64B5F6;
+}
+
+ .widget-colorpicker input[type="text"] {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    outline: none !important;
+    height: 28px;
+    line-height: 28px;
+    background: white;
+    color: rgba(0, 0, 0, .8);
+    border: 1px solid #9E9E9E;
+    font-size: 13px;
+    padding: 4px 8px;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+ .widget-colorpicker input[type="text"]:disabled {
+    opacity: 0.6;
+}
+
+ /* Date Picker Styling */
+
+ .widget-datepicker {
+    width: 300px;
+    height: 28px;
+    line-height: 28px;
+}
+
+ .widget-datepicker input[type="date"] {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    min-width: 0; /* This makes it possible for the flexbox to shrink this input */
+    outline: none !important;
+    height: 28px;
+    border: 1px solid #9E9E9E;
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+    font-size: 13px;
+    padding: 4px 8px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+ .widget-datepicker input[type="date"]:focus {
+    border-color: #64B5F6;
+}
+
+ .widget-datepicker input[type="date"]:invalid {
+    border-color: #FF9800;
+}
+
+ .widget-datepicker input[type="date"]:disabled {
+    opacity: 0.6;
+}
+
+ /* Play Widget */
+
+ .widget-play {
+    width: 148px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+}
+
+ .widget-play .jupyter-button {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    height: auto;
+}
+
+ .widget-play .jupyter-button:disabled {
+    opacity: 0.6;
+}
+
+ /* Tab Widget */
+
+ .jupyter-widgets.widget-tab {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar {
+    /* Necessary so that a tab can be shifted down to overlay the border of the box below. */
+    overflow-x: visible;
+    overflow-y: visible;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar > .p-TabBar-content {
+    /* Make sure that the tab grows from bottom up */
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    min-width: 0;
+    min-height: 0;
+}
+
+ .jupyter-widgets.widget-tab > .widget-tab-contents {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    background: white;
+    color: rgba(0, 0, 0, .8);
+    border: 1px solid #9E9E9E;
+    padding: 15px;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    overflow: auto;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar {
+    font: 13px Helvetica, Arial, sans-serif;
+    min-height: 25px;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 144px;
+            flex: 0 1 144px;
+    min-width: 35px;
+    min-height: 25px;
+    line-height: 24px;
+    margin-left: -1px;
+    padding: 0px 10px;
+    background: #EEEEEE;
+    color: rgba(0, 0, 0, .5);
+    border: 1px solid #9E9E9E;
+    border-bottom: none;
+    position: relative;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-current {
+    color: rgba(0, 0, 0, 1.0);
+    /* We want the background to match the tab content background */
+    background: white;
+    min-height: 26px;
+    -webkit-transform: translateY(1px);
+            transform: translateY(1px);
+    overflow: visible;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab.p-mod-current:before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    content: '';
+    height: 2px;
+    width: calc(100% + 2px);
+    background: #2196F3;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab:first-child {
+    margin-left: 0;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tab:hover:not(.p-mod-current) {
+    background: white;
+    color: rgba(0, 0, 0, .8);
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-mod-closable > .p-TabBar-tabCloseIcon {
+    margin-left: 4px;
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-mod-closable > .p-TabBar-tabCloseIcon:before {
+    font-family: FontAwesome;
+    content: '\F00D'; /* close */
+}
+
+ .jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabIcon,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabLabel,
+.jupyter-widgets.widget-tab > .p-TabBar .p-TabBar-tabCloseIcon {
+    line-height: 24px;
+}
+
+ /* Accordion Widget */
+
+ .p-Collapse {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+}
+
+ .p-Collapse-header {
+    padding: 4px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, .5);
+    background-color: #EEEEEE;
+    border: 1px solid #9E9E9E;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+ .p-Collapse-header:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+}
+
+ .p-Collapse-open > .p-Collapse-header {
+    background-color: white;
+    color: rgba(0, 0, 0, 1.0);
+    cursor: default;
+    border-bottom: none;
+}
+
+ .p-Collapse .p-Collapse-header::before {
+    content: '\F0DA\A0';  /* caret-right, non-breaking space */
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ .p-Collapse-open > .p-Collapse-header::before {
+    content: '\F0D7\A0'; /* caret-down, non-breaking space */
+}
+
+ .p-Collapse-contents {
+    padding: 15px;
+    background-color: white;
+    color: rgba(0, 0, 0, .8);
+    border-left: 1px solid #9E9E9E;
+    border-right: 1px solid #9E9E9E;
+    border-bottom: 1px solid #9E9E9E;
+    overflow: auto;
+}
+
+ .p-Accordion {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+}
+
+ .p-Accordion .p-Collapse {
+    margin-bottom: 0;
+}
+
+ .p-Accordion .p-Collapse + .p-Collapse {
+    margin-top: 4px;
+}
+
+ /* HTML widget */
+
+ .widget-html, .widget-htmlmath {
+    font-size: 13px;
+}
+
+ .widget-html > .widget-html-content, .widget-htmlmath > .widget-html-content {
+    /* Fill out the area in the HTML widget */
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    /* Makes sure the baseline is still aligned with other elements */
+    line-height: 28px;
+    /* Make it possible to have absolutely-positioned elements in the html */
+    position: relative;
+}
+</style><link id="favicon" type="image/x-icon" rel="shortcut icon" href="http://localhost:8888/static/base/images/favicon-notebook.ico"></head>
+
+<body class="notebook_app  command_mode" data-jupyter-api-token="c91274e6b1029724435f7e4c02c27b002753d63cd511e9e8" data-base-url="/" data-ws-url="" data-notebook-name="data620hellographworld.ipynb" data-notebook-path="data620hellographworld.ipynb" dir="ltr"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+<noscript>
+    <div id='noscript'>
+      Jupyter Notebook requires JavaScript.<br>
+      Please enable it to proceed. 
+  </div>
+</noscript>
+
+<div id="header" style="display: block;">
+  <div id="header-container" class="container">
+  <div id="ipython_notebook" class="nav navbar-brand"><a href="http://localhost:8888/tree?token=c91274e6b1029724435f7e4c02c27b002753d63cd511e9e8" title="dashboard">
+      <img src="./data620hellographworld_files/logo.png" alt="Jupyter Notebook">
+  </a></div>
+
+  
+
+
+<span id="save_widget" class="save_widget">
+    <span id="notebook_name" class="filename">data620hellographworld</span>
+    <span class="checkpoint_status" title="Mon, Jun 3, 2019 2:54 PM">Last Checkpoint: a few seconds ago</span>
+    <span class="autosave_status">(autosaved)</span>
+</span>
+
+<span id="kernel_logo_widget">
+  
+  <img class="current_kernel_logo" alt="Current Kernel Logo" src="./data620hellographworld_files/logo-64x64.png" title="Python 3" style="display: inline;">
+  
+</span>
+
+
+  
+  
+  
+  
+
+    <span id="login_widget">
+      
+        <button id="logout" class="btn btn-sm navbar-btn">Logout</button>
+      
+    </span>
+
+  
+
+  
+  
+  </div>
+  <div class="header-bar"></div>
+
+  
+<div id="menubar-container" class="container">
+<div id="menubar">
+    <div id="menus" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-default navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <i class="fa fa-bars"></i>
+              <span class="navbar-text">Menu</span>
+            </button>
+            <p id="kernel_indicator" class="navbar-text indicator_area">
+              <span class="kernel_indicator_name">Python 3</span>
+              <i id="kernel_indicator_icon" class="kernel_idle_icon" title="Kernel Idle"></i>
+            </p>
+            <i id="readonly-indicator" class="navbar-text" title="This notebook is read-only" style="display: none;">
+                <span class="fa-stack">
+                    <i class="fa fa-save fa-stack-1x"></i>
+                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                </span>
+            </i>
+            <i id="modal_indicator" class="navbar-text modal_indicator" title="Command Mode"></i>
+            <span id="notification_area"><div id="notification_kernel" class="notification_widget btn btn-xs navbar-btn undefined info" style="display: none;"><span></span></div><div id="notification_notebook" class="notification_widget btn btn-xs navbar-btn" style="display: none;"><span></span></div><div id="notification_trusted" class="notification_widget btn btn-xs navbar-btn" style="display: inline-block; cursor: help;" disabled="disabled"><span title="Javascript enabled for notebook display">Trusted</span></div><div id="notification_widgets" class="notification_widget btn btn-xs navbar-btn" style="display: none;"><span></span></div></span>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">File</a>
+                    <ul id="file_menu" class="dropdown-menu">
+                        <li id="new_notebook" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">New Notebook</a>
+                            <ul class="dropdown-menu" id="menu-new-notebook-submenu"><li id="new-notebook-submenu-python3"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Python 3</a></li></ul>
+                        </li>
+                        <li id="open_notebook" title="Opens a new window with the Dashboard view">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Open...</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider"></li>
+                        <li id="copy_notebook" title="Open a copy of this notebook&#39;s contents and start a new kernel">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Make a Copy...</a></li>
+                        <li id="rename_notebook"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Rename...</a></li>
+                        <li id="save_checkpoint"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Save and Checkpoint</a></li>
+                        <!-- <hr/> -->
+                        <li class="divider"></li>
+                        <li id="restore_checkpoint" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Revert to Checkpoint</a>
+                          <ul class="dropdown-menu"><li><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Monday, June 3, 2019 2:54 PM</a></li></ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="print_preview"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Print Preview</a></li>
+                        <li class="dropdown-submenu"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Download as</a>
+                            <ul id="download_menu" class="dropdown-menu">
+                                <li id="download_ipynb"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Notebook (.ipynb)</a></li>
+                                <li id="download_script"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Python (.py)</a></li>
+                                <li id="download_html"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">HTML (.html)</a></li>
+                                <li id="download_slides"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Reveal.js slides (.html)</a></li>
+                                <li id="download_markdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Markdown (.md)</a></li>
+                                <li id="download_rst"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">reST (.rst)</a></li>
+                                <li id="download_latex"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">LaTeX (.tex)</a></li>
+                                <li id="download_pdf"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">PDF via LaTeX (.pdf)</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu hidden"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Deploy as</a>
+                            <ul id="deploy_menu" class="dropdown-menu"></ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="trust_notebook" title="Trust the output of this notebook" class="disabled">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Trusted Notebook</a></li>
+                        <li class="divider"></li>
+                        <li id="close_and_halt" title="Shutdown this notebook&#39;s kernel, and close this window">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Close and Halt</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
+                    <ul id="edit_menu" class="dropdown-menu">
+                        <li id="cut_cell"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Cut Cells</a></li>
+                        <li id="copy_cell"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Copy Cells</a></li>
+                        <li id="paste_cell_above" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Paste Cells Above</a></li>
+                        <li id="paste_cell_below" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Paste Cells Below</a></li>
+                        <li id="paste_cell_replace" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Paste Cells &amp; Replace</a></li>
+                        <li id="delete_cell"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Delete Cells</a></li>
+                        <li id="undelete_cell" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Undo Delete Cells</a></li>
+                        <li class="divider"></li>
+                        <li id="split_cell"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Split Cell</a></li>
+                        <li id="merge_cell_above"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Merge Cell Above</a></li>
+                        <li id="merge_cell_below"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Merge Cell Below</a></li>
+                        <li class="divider"></li>
+                        <li id="move_cell_up"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Move Cell Up</a></li>
+                        <li id="move_cell_down"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Move Cell Down</a></li>
+                        <li class="divider"></li>
+                        <li id="edit_nb_metadata"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Edit Notebook Metadata</a></li>
+                        <li class="divider"></li>
+                        <li id="find_and_replace"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#"> Find and Replace </a></li>
+                        <li class="divider"></li>
+                        <li id="cut_cell_attachments"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Cut Cell Attachments</a></li>
+                        <li id="copy_cell_attachments"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Copy Cell Attachments</a></li>
+                        <li id="paste_cell_attachments" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Paste Cell Attachments</a></li>
+                        <li class="divider"></li>
+                        <li id="insert_image" class="disabled"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#"> Insert Image </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">View</a>
+                    <ul id="view_menu" class="dropdown-menu">
+                        <li id="toggle_header" title="Show/Hide the logo and notebook title (above menu bar)">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle Header</a>
+                        </li>
+                        <li id="toggle_toolbar" title="Show/Hide the action icons (below menu bar)">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle Toolbar</a>
+                        </li>
+                        <li id="toggle_line_numbers" title="Show/Hide line numbers in cells">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle Line Numbers</a>
+                        </li>
+                        <li id="menu-cell-toolbar" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Cell Toolbar</a>
+                            <ul class="dropdown-menu" id="menu-cell-toolbar-submenu"><li data-name="None"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">None</a></li><li data-name="Edit%20Metadata"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Edit Metadata</a></li><li data-name="Raw%20Cell%20Format"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Raw Cell Format</a></li><li data-name="Slideshow"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Slideshow</a></li><li data-name="Attachments"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Attachments</a></li><li data-name="Tags"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Tags</a></li></ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Insert</a>
+                    <ul id="insert_menu" class="dropdown-menu">
+                        <li id="insert_cell_above" title="Insert an empty Code cell above the currently active cell">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Insert Cell Above</a></li>
+                        <li id="insert_cell_below" title="Insert an empty Code cell below the currently active cell">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Insert Cell Below</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Cell</a>
+                    <ul id="cell_menu" class="dropdown-menu">
+                        <li id="run_cell" title="Run this cell, and move cursor to the next one">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run Cells</a></li>
+                        <li id="run_cell_select_below" title="Run this cell, select below">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run Cells and Select Below</a></li>
+                        <li id="run_cell_insert_below" title="Run this cell, insert below">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run Cells and Insert Below</a></li>
+                        <li id="run_all_cells" title="Run all cells in the notebook">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run All</a></li>
+                        <li id="run_all_cells_above" title="Run all cells above (but not including) this cell">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run All Above</a></li>
+                        <li id="run_all_cells_below" title="Run this cell and all cells below it">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Run All Below</a></li>
+                        <li class="divider"></li>
+                        <li id="change_cell_type" class="dropdown-submenu" title="All cells in the notebook have a cell type. By default, new cells are created as &#39;Code&#39; cells">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Cell Type</a>
+                            <ul class="dropdown-menu">
+                              <li id="to_code" title="Contents will be sent to the kernel for execution, and output will display in the footer of cell">
+                                  <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Code</a></li>
+                              <li id="to_markdown" title="Contents will be rendered as HTML and serve as explanatory text">
+                                  <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Markdown</a></li>
+                              <li id="to_raw" title="Contents will pass through nbconvert unmodified">
+                                  <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Raw NBConvert</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="current_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Current Outputs</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_current_output" title="Hide/Show the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_current_output_scroll" title="Scroll the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_current_output" title="Clear the output of the current cell">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="all_outputs" class="dropdown-submenu"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">All Output</a>
+                            <ul class="dropdown-menu">
+                                <li id="toggle_all_output" title="Hide/Show the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle</a>
+                                </li>
+                                <li id="toggle_all_output_scroll" title="Scroll the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Toggle Scrolling</a>
+                                </li>
+                                <li id="clear_all_output" title="Clear the output of all cells">
+                                    <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Clear</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Kernel</a>
+                    <ul id="kernel_menu" class="dropdown-menu">
+                        <li id="int_kernel" title="Send Keyboard Interrupt (CTRL-C) to the Kernel">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Interrupt</a>
+                        </li>
+                        <li id="restart_kernel" title="Restart the Kernel">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Restart</a>
+                        </li>
+                        <li id="restart_clear_output" title="Restart the Kernel and clear all output">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Restart &amp; Clear Output</a>
+                        </li>
+                        <li id="restart_run_all" title="Restart the Kernel and re-run the notebook">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Restart &amp; Run All</a>
+                        </li>
+                        <li id="reconnect_kernel" title="Reconnect to the Kernel">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Reconnect</a>
+                        </li>
+                        <li id="shutdown_kernel" title="Shutdown the Kernel">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Shutdown</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li id="menu-change-kernel" class="dropdown-submenu">
+                            <a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Change kernel</a>
+                            <ul class="dropdown-menu" id="menu-change-kernel-submenu"><li id="kernel-submenu-python3"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Python 3</a></li></ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" data-toggle="dropdown" class="dropdown-toggle">Widgets</a><ul id="widget-submenu" class="dropdown-menu"><li title="Save the notebook with the widget state information for static rendering"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Save Notebook Widget State</a></li><li title="Clear the widget state information from the notebook"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Clear Notebook Widget State</a></li><ul class="divider"></ul><li title="Download the widget state as a JSON file"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Download Widget State</a></li><li title="Embed interactive widgets"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Embed Widgets</a></li></ul></li><li class="dropdown"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
+                    <ul id="help_menu" class="dropdown-menu">
+                        
+                        <li id="notebook_tour" title="A quick tour of the notebook user interface"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">User Interface Tour</a></li>
+                        <li id="keyboard_shortcuts" title="Opens a tooltip with all keyboard shortcuts"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Keyboard Shortcuts</a></li>
+                        <li id="edit_keyboard_shortcuts" title="Opens a dialog allowing you to edit Keyboard shortcuts"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">Edit Keyboard Shortcuts</a></li>
+                        <li class="divider"></li>
+                        
+
+						
+                        
+                            
+                                <li><a rel="noreferrer" href="http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Index.ipynb" target="_blank" title="Opens in a new window">
+                                
+                                    <i class="fa fa-external-link menu-icon pull-right"></i>
+                                
+
+                                Notebook Help
+                                </a></li>
+                            
+                                <li><a rel="noreferrer" href="https://help.github.com/articles/markdown-basics/" target="_blank" title="Opens in a new window">
+                                
+                                    <i class="fa fa-external-link menu-icon pull-right"></i>
+                                
+
+                                Markdown
+                                </a></li>
+                            
+                            
+                        
+                        <li id="kernel-help-links" class="divider"></li><li><a target="_blank" title="Opens in a new window" href="https://docs.python.org/3.6?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>Python Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://ipython.org/documentation.html?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>IPython Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://docs.scipy.org/doc/numpy/reference/?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>NumPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://docs.scipy.org/doc/scipy/reference/?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>SciPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://matplotlib.org/contents.html?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>Matplotlib Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="http://docs.sympy.org/latest/index.html?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>SymPy Reference</span></a></li><li><a target="_blank" title="Opens in a new window" href="https://pandas.pydata.org/pandas-docs/stable/?v=20190603133121"><i class="fa fa-external-link menu-icon pull-right"></i><span>pandas Reference</span></a></li><li class="divider"></li>
+                        <li title="About Jupyter Notebook"><a id="notebook_about" href="http://localhost:8888/notebooks/data620hellographworld.ipynb#">About</a></li>
+                        
+                    </ul>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="maintoolbar" class="navbar">
+  <div class="toolbar-inner navbar-inner navbar-nobg">
+    <div id="maintoolbar-container" class="container toolbar"><div class="btn-group" id="save-notbook"><button class="btn btn-default" title="Save and Checkpoint" data-jupyter-action="jupyter-notebook:save-notebook"><i class="fa-save fa"></i></button></div><div class="btn-group" id="insert_above_below"><button class="btn btn-default" title="insert cell below" data-jupyter-action="jupyter-notebook:insert-cell-below"><i class="fa-plus fa"></i></button></div><div class="btn-group" id="cut_copy_paste"><button class="btn btn-default" title="cut selected cells" data-jupyter-action="jupyter-notebook:cut-cell"><i class="fa-cut fa"></i></button><button class="btn btn-default" title="copy selected cells" data-jupyter-action="jupyter-notebook:copy-cell"><i class="fa-copy fa"></i></button><button class="btn btn-default" title="paste cells below" data-jupyter-action="jupyter-notebook:paste-cell-below"><i class="fa-paste fa"></i></button></div><div class="btn-group" id="move_up_down"><button class="btn btn-default" title="move selected cells up" data-jupyter-action="jupyter-notebook:move-cell-up"><i class="fa-arrow-up fa"></i></button><button class="btn btn-default" title="move selected cells down" data-jupyter-action="jupyter-notebook:move-cell-down"><i class="fa-arrow-down fa"></i></button></div><div class="btn-group" id="run_int"><button class="btn btn-default" title="Run" data-jupyter-action="jupyter-notebook:run-cell-and-select-next"><i class="fa-step-forward fa"></i><span class="toolbar-btn-label">Run</span></button><button class="btn btn-default" title="interrupt the kernel" data-jupyter-action="jupyter-notebook:interrupt-kernel"><i class="fa-stop fa"></i></button><button class="btn btn-default" title="restart the kernel (with dialog)" data-jupyter-action="jupyter-notebook:confirm-restart-kernel"><i class="fa-repeat fa"></i></button><button class="btn btn-default" title="restart the kernel, then re-run the whole notebook (with dialog)" data-jupyter-action="jupyter-notebook:confirm-restart-kernel-and-run-all-cells"><i class="fa-forward fa"></i></button></div><select id="cell_type" class="form-control select-xs"><option value="code">Code</option><option value="markdown">Markdown</option><option value="raw">Raw NBConvert</option><option value="heading">Heading</option><option value="multiselect" disabled="disabled" style="display: none;">-</option></select><div class="btn-group"><button class="btn btn-default" title="open the command palette" data-jupyter-action="jupyter-notebook:show-command-palette"><i class="fa-keyboard-o fa"></i></button></div></div>
+  </div>
+</div>
+</div>
+
+<div class="lower-header-bar"></div>
+
+</div>
+
+<div id="site" style="height: 598px; display: block;">
+
+
+<div id="ipython-main-app">
+    <div id="notebook_panel">
+        <div id="notebook" tabindex="-1"><div class="container" id="notebook-container"><div class="cell code_cell rendered selected" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[13]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 786px; margin-bottom: -17px; border-right-width: 13px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#In this assignment we will be creating a basic network graph using the NetworkX pacakge for Python. </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#First we will load the required pacakges.</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 58px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[32]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 247px; margin-bottom: -17px; border-right-width: 13px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">networkx</span> <span class="cm-keyword">as</span> <span class="cm-variable">nx</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-variable">matplotlib</span>.<span class="cm-property">pyplot</span> <span class="cm-keyword">as</span> <span class="cm-variable">plt</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 58px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[14]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 177.922px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#Set an empty graph G.</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[33]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 116px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 5.59375px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">G</span> <span class="cm-operator">=</span> <span class="cm-variable">nx</span>.<span class="cm-property">Graph</span>()</span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[&nbsp;]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 8.59375px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 5.59375px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[34]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 208.719px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#Define positions of nodes</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[35]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 377.969px; margin-bottom: -17px; border-right-width: 13px; min-height: 113px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 5.59375px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">pos</span> <span class="cm-operator">=</span> {<span class="cm-string">"Jane"</span>: [<span class="cm-number">55</span>, <span class="cm-number">20</span>], <span class="cm-string">"Ike"</span>: [<span class="cm-number">45</span>, <span class="cm-number">20</span>], </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-string">"Heather"</span>: [<span class="cm-number">35</span>, <span class="cm-number">20</span>], <span class="cm-string">"Fernando"</span>: [<span class="cm-number">25</span>,<span class="cm-number">30</span>],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-string">"Garth"</span>: [<span class="cm-number">25</span>, <span class="cm-number">10</span>], <span class="cm-string">"Carol"</span>: [<span class="cm-number">15</span>, <span class="cm-number">40</span>], </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-string">"Diane"</span>: [<span class="cm-number">15</span>, <span class="cm-number">20</span>], <span class="cm-string">"Ed"</span>: [<span class="cm-number">15</span>, <span class="cm-number">0</span>], </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-string">"Andre"</span>: [<span class="cm-number">5</span>, <span class="cm-number">30</span>], <span class="cm-string">"Beverly"</span>: [<span class="cm-number">5</span>, <span class="cm-number">10</span>]}</span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 113px;"></div><div class="CodeMirror-gutters" style="display: none; height: 126px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[&nbsp;]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 85.5625px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#Add nodes</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[36]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 277.906px; margin-bottom: -17px; border-right-width: 13px; min-height: 62px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 5.59375px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">G</span>.<span class="cm-property">add_nodes_from</span>(<span class="cm-variable">pos</span>.<span class="cm-property">keys</span>())</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> <span class="cm-variable">nodey</span>, <span class="cm-variable">position</span> <span class="cm-keyword">in</span> <span class="cm-variable">pos</span>.<span class="cm-property">items</span>():</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">G</span>.<span class="cm-property">node</span>[<span class="cm-variable">nodey</span>][<span class="cm-string">"pos"</span>] <span class="cm-operator">=</span> <span class="cm-variable">position</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 62px;"></div><div class="CodeMirror-gutters" style="display: none; height: 75px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[37]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 85.5625px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#Add edges</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 41px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[38]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 5.59375px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="display: block; right: 0px; left: 0px;"><div style="height: 100%; min-height: 1px; width: 3033px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 3033px; margin-bottom: -17px; border-right-width: 13px; min-height: 28px; padding-right: 0px; padding-bottom: 17px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 5.59375px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">G</span>.<span class="cm-property">add_edges_from</span>([(<span class="cm-string">"Jane"</span>, <span class="cm-string">"Ike"</span>), (<span class="cm-string">"Ike"</span>, <span class="cm-string">"Heather"</span>), (<span class="cm-string">"Heather"</span>, <span class="cm-string">"Fernando"</span>), (<span class="cm-string">"Heather"</span>, <span class="cm-string">"Garth"</span>), (<span class="cm-string">"Fernando"</span>, <span class="cm-string">"Garth"</span>), (<span class="cm-string">"Fernando"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Garth"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Carol"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Ed"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Beverly"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Andre"</span>, <span class="cm-string">"Diane"</span>), (<span class="cm-string">"Carol"</span>, <span class="cm-string">"Fernando"</span>), (<span class="cm-string">"Ed"</span>, <span class="cm-string">"Garth"</span>), (<span class="cm-string">"Fernando"</span>, <span class="cm-string">"Andre"</span>), (<span class="cm-string">"Garth"</span>, <span class="cm-string">"Beverly"</span>), (<span class="cm-string">"Ed"</span>, <span class="cm-string">"Beverly"</span>), (<span class="cm-string">"Carol"</span>, <span class="cm-string">"Andre"</span>), (<span class="cm-string">"Andre"</span>, <span class="cm-string">"Beverly"</span>)])</span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 17px solid transparent; top: 28px;"></div><div class="CodeMirror-gutters" style="display: none; height: 58px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[49]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 816.563px; margin-bottom: -17px; border-right-width: 13px; min-height: 96px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">nx</span>.<span class="cm-property">draw</span>(<span class="cm-variable">G</span>, <span class="cm-variable">pos</span>, <span class="cm-variable">node_color</span><span class="cm-operator">=</span><span class="cm-string">"grey"</span>, <span class="cm-variable">edge_color</span><span class="cm-operator">=</span><span class="cm-string">"purple"</span>,<span class="cm-variable">node_shape</span><span class="cm-operator">=</span><span class="cm-string">"s"</span>, <span class="cm-variable">node_size</span><span class="cm-operator">=</span><span class="cm-number">600</span>, <span class="cm-variable">alpha</span><span class="cm-operator">=</span><span class="cm-number">0.5</span>, <span class="cm-variable">width</span><span class="cm-operator">=</span><span class="cm-number">4</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-keyword">in</span> <span class="cm-variable">pos</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">pos</span>[<span class="cm-variable">i</span>][<span class="cm-number">1</span>] <span class="cm-operator">+=-</span><span class="cm-number">1.0</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">nx</span>.<span class="cm-property">draw_networkx_labels</span>(<span class="cm-variable">G</span>, <span class="cm-variable">pos</span>, <span class="cm-variable">font_weight</span><span class="cm-operator">=</span><span class="cm-string">"bold"</span>,<span class="cm-variable">font_size</span><span class="cm-operator">=</span><span class="cm-number">10</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">plt</span>.<span class="cm-property">show</span>()</span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 96px;"></div><div class="CodeMirror-gutters" style="display: none; height: 109px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"><div class="output_area"><div class="prompt"></div><div class="output_subarea output_png"><img src="data:image/png;base64,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"></div></div></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div><div class="cell code_cell unselected rendered" tabindex="2"><div class="input"><div class="prompt input_prompt"><bdi>In</bdi>&nbsp;[&nbsp;]:</div><div class="inner_cell"><div class="ctb_hideshow"><div class="celltoolbar"></div></div><div class="input_area"><div class="CodeMirror cm-s-ipython"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.59375px; left: 6px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-width: 670.547px; margin-bottom: -17px; border-right-width: 13px; min-height: 45px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 6px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#references:</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#https://stackoverflow.com/questions/11804730/networkx-add-node-with-specific-position</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 58px;"></div></div></div></div></div></div><div class="output_wrapper"><div class="out_prompt_overlay prompt" title="click to expand output; double click to hide output"></div><div class="output"></div><div class="btn btn-default output_collapsed" title="click to expand output" style="display: none;">. . .</div></div></div></div><div class="end_space"></div></div>
+        <div id="tooltip" class="ipython_tooltip" style="display:none"><div class="tooltipbuttons"><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" role="button" class="ui-button"><span class="ui-icon ui-icon-close">Close</span></a><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" class="ui-corner-all" role="button" id="expanbutton" title="Grow the tooltip vertically (press shift-tab twice)"><span class="ui-icon ui-icon-plus">Expand</span></a><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" role="button" class="ui-button" title="show the current docstring in pager (press shift-tab 4 times)"><span class="ui-icon ui-icon-arrowstop-l-n">Open in Pager</span></a><a href="http://localhost:8888/notebooks/data620hellographworld.ipynb#" role="button" class="ui-button" title="Tooltip will linger for 10 seconds while you type" style="display: none;"><span class="ui-icon ui-icon-clock">Close</span></a></div><div class="pretooltiparrow"></div><div class="tooltiptext smalltooltip"></div></div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+<div id="pager" class="ui-resizable">
+    <div id="pager-contents">
+        <div id="pager-container" class="container"></div>
+    </div>
+    <div id="pager-button-area"><a role="button" title="Open the pager in an external window" class="ui-button"><span class="ui-icon ui-icon-extlink"></span></a><a role="button" title="Close the pager" class="ui-button"><span class="ui-icon ui-icon-close"></span></a></div>
+<div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div></div>
+
+
+
+
+
+
+<script type="text/javascript">
+    sys_info = {"notebook_version": "5.5.0", "notebook_path": "C:\\Users\\tbao\\Anaconda3\\lib\\site-packages\\notebook", "commit_source": "", "commit_hash": "", "sys_version": "3.6.5 |Anaconda, Inc.| (default, Mar 29 2018, 13:32:41) [MSC v.1900 64 bit (AMD64)]", "sys_executable": "C:\\Users\\tbao\\Anaconda3\\python.exe", "sys_platform": "win32", "platform": "Windows-10-10.0.17134-SP0", "os_name": "nt", "default_encoding": "utf-8"};
+</script>
+
+<script src="./data620hellographworld_files/encoding.js.download" charset="utf-8"></script>
+
+<script src="./data620hellographworld_files/main.min.js.download" type="text/javascript" charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+  function _remove_token_from_url() {
+    if (window.location.search.length <= 1) {
+      return;
+    }
+    var search_parameters = window.location.search.slice(1).split('&');
+    for (var i = 0; i < search_parameters.length; i++) {
+      if (search_parameters[i].split('=')[0] === 'token') {
+        // remote token from search parameters
+        search_parameters.splice(i, 1);
+        var new_search = '';
+        if (search_parameters.length) {
+          new_search = '?' + search_parameters.join('&');
+        }
+        var new_url = window.location.origin + 
+                      window.location.pathname + 
+                      new_search + 
+                      window.location.hash;
+        window.history.replaceState({}, "", new_url);
+        return;
+      }
+    }
+  }
+  _remove_token_from_url();
+</script>
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal;"></div></div></body></html>
